@@ -6,10 +6,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.esdraz.aulafragment.R
+import com.google.android.material.textfield.TextInputEditText
 
+//class ConversasFragment : Fragment(R.layout.fragment_conversas) {
 class ConversasFragment : Fragment() {
+
+    private lateinit var textNome: TextInputEditText
+    private lateinit var textResultado: TextView
+    private lateinit var btnExecutar: Button
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -27,11 +35,25 @@ class ConversasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.i("ciclo_vida", "Fragment onCreateView")
-        return inflater.inflate(R.layout.fragment_conversas, container, false)
+
+        // inflar a View usando o layout
+        val view = inflater.inflate(R.layout.fragment_conversas, container, false)
+
+        // processamento da visualizacao
+        textNome = view.findViewById(R.id.text_nome)
+        textResultado = view.findViewById(R.id.text_resultado)
+        btnExecutar = view.findViewById(R.id.btn_executar)
+
+
+        btnExecutar.setOnClickListener {
+            textResultado.text = textNome.text.toString()
+        }
+
+        return view
     }
 
-    /* Depreciado
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//    Depreciado
+/*    override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     }*/
 
