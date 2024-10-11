@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.esdraz.aulafragment.fragments.ChamadasFragment
@@ -16,6 +17,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnChamadas: Button
     private lateinit var btnMercado: Button
     private lateinit var btnRemoverFragment: Button
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,13 +62,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnMercado.setOnClickListener {
+
+            // bundle passando a categoria e usuario via argumento
+            val bundle = bundleOf(
+                "categoria" to "Mercado",
+                "usuario" to "Francisco"
+            )
+
+            mercadoFragment.arguments = bundle
+
             supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_conteudo, mercadoFragment)
                 .commit()
         }
 
-        //.remove remove a instância do fragment designado
+        // .remove remove a instância do fragment designado
         btnRemoverFragment.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
