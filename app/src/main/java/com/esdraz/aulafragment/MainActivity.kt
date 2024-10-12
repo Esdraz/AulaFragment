@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.esdraz.aulafragment.fragments.ChamadasFragment
 import com.esdraz.aulafragment.fragments.ConversasFragment
 import com.esdraz.aulafragment.fragments.MercadoFragment
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 //        fragmentManager.add(R.id.fragment_conteudo, ConversasFragment())
 //        fragmentManager.commit()
 
-        //instanciando o conversasFragment para poder remover com o .remove no btnChamadas
+        //insntanciando o conversasFragmet para poder remover com o .remove no btnChamadas
         val conversasFragment = ConversasFragment()
         val chamadasFragment = ChamadasFragment()
         val mercadoFragment = MercadoFragment()
@@ -71,10 +73,15 @@ class MainActivity : AppCompatActivity() {
 
             mercadoFragment.arguments = bundle
 
-            supportFragmentManager
+            // usando a ext jetpack
+            supportFragmentManager.commit {
+                replace<MercadoFragment>(R.id.fragment_conteudo, args = bundle)
+            }
+
+            /*supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_conteudo, mercadoFragment)
-                .commit()
+                .commit()*/
         }
 
         // .remove remove a instância do fragment designado

@@ -36,6 +36,8 @@ android {
 }
 
 dependencies {
+    //extensao kotlin KTX do jetpack
+    implementation("androidx.fragment:fragment-ktx:1.8.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
